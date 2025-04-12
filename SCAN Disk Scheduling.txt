@@ -1,4 +1,4 @@
-SCAN Disk Scheduling
+#SCAN Disk Scheduling
 
 def scan(requests, head, disk_size=200):
     requests.sort()
