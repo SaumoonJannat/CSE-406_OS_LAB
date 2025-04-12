@@ -1,4 +1,4 @@
-SSTF Disk Scheduling
+#SSTF Disk Scheduling
 
 def custom_scan(requests, head):
     sequence = [65, 67, 41, 14, 0, 98, 122, 124, 183, 199]
