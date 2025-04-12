@@ -1,4 +1,4 @@
-#C SCAN Disk Scheduling
+#C-SCAN Disk Scheduling
 
 def c_scan(requests, head, disk_size=200):
     requests.sort()
