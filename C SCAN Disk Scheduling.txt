@@ -1,0 +1,38 @@
+C SCAN Disk Scheduling
+
+def c_scan(requests, head, disk_size=200):
+    requests.sort()
+    left = [r for r in requests if r < head]
+    right = [r for r in requests if r >= head]
+
+    seek_sequence = []
+    seek_count = 0
+    curr = head
+
+    # Move right and service right-side requests
+    for r in right:
+        seek_sequence.append(r)
+        seek_count += abs(curr - r)
+        curr = r
+
+    # Jump to start of disk
+    if left:
+        seek_count += abs(curr - (disk_size - 1))  
+        seek_count += (disk_size - 1)              
+        curr = 0
+
+    # Service left-side requests
+    for r in left:
+        seek_sequence.append(r)
+        seek_count += abs(curr - r)
+        curr = r
+
+    print("Seek Sequence:", seek_sequence)
+    print("Total number of seek operations:", seek_count)
+
+# Input
+requests = [0, 14, 41, 53, 65, 67, 98, 122, 124, 183, 199]
+head = 53
+
+c_scan(requests, head)
+

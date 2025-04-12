@@ -1,0 +1,34 @@
+SCAN Disk Scheduling
+
+def scan(requests, head, disk_size=200):
+    requests.sort()
+    left = [r for r in requests if r < head]
+    right = [r for r in requests if r >= head]
+    
+    seek_sequence = []
+    seek_count = 0
+    
+    # Move right
+    for r in right:
+        seek_sequence.append(r)
+        seek_count += abs(head - r)
+        head = r
+
+    if head != disk_size - 1:
+        seek_count += (disk_size - 1 - head)
+        head = disk_size - 1
+
+    # Move left
+    for r in reversed(left):
+        seek_sequence.append(r)
+        seek_count += abs(head - r)
+        head = r
+
+    print("Seek Sequence:", seek_sequence)
+    print("Total number of seek operations:", seek_count)
+
+# Input
+requests = [0, 14, 41, 53, 65, 67, 98, 122, 124, 183, 199]
+head = 53
+
+scan(requests, head)
