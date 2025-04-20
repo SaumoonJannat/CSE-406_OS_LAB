@@ -1,0 +1,22 @@
+#FCFS_Disk_scheduling
+
+def calculate_fcfs_seek_time(track_requests, start_head):
+    seek_total = 0
+    head_position = start_head
+
+    for track in track_requests:
+        distance = abs(track - head_position)
+        seek_total += distance
+        head_position = track  
+
+    return seek_total
+
+
+# Input data
+disk_requests = [176, 79, 41, 11]
+initial_position = 50
+
+# FCFS scheduling execution
+total_seek = calculate_fcfs_seek_time(disk_requests, initial_position)
+
+print("Total Seek Time (FCFS):", total_seek)
