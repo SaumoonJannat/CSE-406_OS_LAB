@@ -1,0 +1,22 @@
+#MID Q2:
+
+def sstf(requests, head):
+    total_seek = 0
+    sequence = []
+
+    while requests:
+        next_track = min(requests, key=lambda r: abs(r - head))
+        total_seek += abs(next_track - head)
+        sequence.append(next_track)
+        head = next_track
+        requests.remove(next_track)
+
+    return total_seek, sequence
+
+# input
+reqs = [137, 240, 179, 75, 118, 29, 15, 51]
+head = 55
+
+total, seq = sstf(reqs.copy(), head)
+print("Seek Sequence:", [head] + seq)
+print("Total Seek Time:", total)
