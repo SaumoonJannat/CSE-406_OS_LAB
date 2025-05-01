@@ -1,0 +1,20 @@
+# LRU Page Replacement
+
+def lru(pages, frame_size):
+    frame = []
+    faults = 0
+
+    for page in pages:
+        if page not in frame:
+            if len(frame) == frame_size:
+                frame.pop(0)  # Remove LRU page
+            frame.append(page)
+            faults += 1
+        else:
+            frame.remove(page) 
+            frame.append(page)
+
+    print("Total Page Faults:", faults)
+
+# Example usage
+lru([7, 0, 1, 2, 0, 3, 0, 4, 2, 3], 4)
